@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="일반 국민을 위한 의약품 기본정보, 올바른 복용·보관·폐기 방법, 이상반응 및 상호작용 공공 안심 안내 포털">
+  <title>약, 알고 사용하기 - 국민 의약품 안심 안내 포털</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 상단 공공데이터 개발용 예시 안내 배너 -->
+  <aside class="notice-top-bar" aria-label="공공데이터 개발용 예시 안내">
+    <div class="container">
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        본 사이트는 공공데이터 양식을 바탕으로 제작된 [개발용 예시 데이터]를 포함하고 있습니다. 실제 의학적 판단에 사용하지 마세요.
+      </span>
+    </div>
+  </aside>
+
+  <!-- 상단 헤더 및 네비게이션 -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#main" class="brand-area" aria-label="약, 알고 사용하기 홈으로 이동">
+        <div class="brand-logo-icon" aria-hidden="true">약</div>
+        <div class="brand-titles">
+          <span class="brand-title">약, 알고 사용하기</span>
+          <span class="brand-subtitle">국민 의약품 안심 안내 포털</span>
+        </div>
+      </a>
+
+      <!-- 햄버거 메뉴 버튼 (모바일용) -->
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mainNav" aria-label="주요 메뉴 열기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- GNV 메인 네비게이션 -->
+      <nav class="main-nav" id="mainNav" aria-label="메인 메뉴">
+        <ul class="nav-list">
+          <li><a href="#heroSection" class="nav-link active">홈</a></li>
+          <li><a href="#searchSection" class="nav-link">의약품 검색</a></li>
+          <li><a href="#usageSection" class="nav-link">안전한 복용</a></li>
+          <li><a href="#storageSection" class="nav-link">보관·폐기</a></li>
+          <li><a href="#adverseSection" class="nav-link">이상반응·상호작용</a></li>
+          <li><a href="#portalGuideSection" class="nav-link">이용 안내</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 메인 영역 시작 -->
+  <main id="main">
+
+    <!-- 1. 메인 비주얼 (Hero Section) & 대형 검색창 -->
+    <section class="hero-section" id="heroSection" aria-labelledby="heroTitle">
+      <div class="container">
+        <h1 class="hero-title" id="heroTitle">복용 전에는 확인하고, 복용 중에는 살펴보세요.</h1>
+        <p class="hero-description">
+          의약품의 기본정보부터 복용·보관·폐기 방법과 이상반응·상호작용 정보를 한곳에서 안전하게 확인하세요.
+        </p>
+
+        <!-- 메인 검색 박스 -->
+        <div class="search-box-wrap">
+          <form id="searchForm" role="search" aria-label="의약품 검색">
+            <div class="search-form-row">
+              <div class="search-input-group">
+                <svg class="search-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <label for="searchInput" class="sr-only">검색어 입력</label>
+                <input type="text" id="searchInput" class="search-input" placeholder="제품명, 성분명 또는 분류명을 입력하세요." autocomplete="off">
+              </div>
+              <button type="submit" id="searchSubmitBtn" class="btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                의약품 검색
+              </button>
+            </div>
+
+            <!-- 검색 필터 행 -->
+            <div class="search-filter-row">
+              <span class="filter-label">검색 필터:</span>
+              
+              <label for="filterType" class="sr-only">의약품 구분 선택</label>
+              <select id="filterType" class="filter-select">
+                <option value="all">전체 구분</option>
+                <option value="일반의약품">일반의약품</option>
+                <option value="전문의약품">전문의약품</option>
+              </select>
+
+              <label for="filterForm" class="sr-only">제형 선택</label>
+              <select id="filterForm" class="filter-select">
+                <option value="all">전체 제형</option>
+                <option value="정제">정제 (알약)</option>
+                <option value="현탁액">현탁액 / 내복액 (액체)</option>
+                <option value="연고">연고 (외용제)</option>
+                <option value="분말">분말 (가루)</option>
+              </select>
+
+              <label for="filterCategory" class="sr-only">주요 분류 선택</label>
+              <select id="filterCategory" class="filter-select">
+                <option value="all">전체 분류</option>
+                <option value="해열">해열·진통·소염제</option>
+                <option value="제산제">제산제 및 위장약</option>
+                <option value="혈전">혈전용해제</option>
+                <option value="당뇨">당뇨병 치료제</option>
+                <option value="고혈압">고혈압 치료제</option>
+                <option value="항생">외용 항생제</option>
+              </select>
+
+              <button type="button" id="filterResetBtn" class="btn-secondary">초기화</button>
+            </div>
+
+            <!-- 최근 검색어 바 -->
+            <div class="recent-search-bar" id="recentSearchBar">
+              <span class="recent-title">최근 검색어:</span>
+              <div class="recent-keywords" id="recentKeywordsList">
+                <span class="text-muted" style="font-size:0.85rem;">최근 검색어가 없습니다.</span>
+              </div>
+              <button type="button" id="clearRecentBtn" class="recent-clear-btn">전체 삭제</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      
+      <!-- 2. 핵심 서비스 바로가기 (6종 카드) -->
+      <section class="services-overview-section" aria-labelledby="servicesTitle">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="servicesTitle">핵심 서비스 바로가기</h2>
+          <p class="section-subtitle">안전한 의약품 사용을 위해 꼭 알아야 할 주요 정보입니다.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- 카드 1 -->
+          <a href="#searchSection" class="service-card" id="cardNavSearch">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 2a8.5 8.5 0 105.3 15.17l4.5 4.5 1.42-1.42-4.5-4.5A8.5 8.5 0 0010.5 2zm0 2a6.5 6.5 0 110 13 6.5 6.5 0 010-13z"/></svg>
+            </div>
+            <h3 class="service-card-title">의약품 기본정보</h3>
+            <p class="service-card-desc">제품명, 성분, 전문/일반 구분 및 효능·효과 등 기본 허가 정보를 검색합니다.</p>
+            <span class="card-btn-link">정보 검색하기 &rarr;</span>
+          </a>
+
+          <!-- 카드 2 -->
+          <a href="#usageSection" class="service-card" id="cardNavUsage">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            </div>
+            <h3 class="service-card-title">올바른 복용</h3>
+            <p class="service-card-desc">정해진 시간에 올바른 양을 복용하는 안전 수칙과 가이드를 확인합니다.</p>
+            <span class="card-btn-link">복용 가이드 보기 &rarr;</span>
+          </a>
+
+          <!-- 카드 3 -->
+          <a href="#storageSection" class="service-card" id="cardNavStorage">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+            <h3 class="service-card-title">안전한 보관</h3>
+            <p class="service-card-desc">온도, 습도, 직사광선을 고려한 올바른 약품 보관 방법을 안내받습니다.</p>
+            <span class="card-btn-link">보관 방법 보기 &rarr;</span>
+          </a>
+
+          <!-- 카드 4 -->
+          <a href="#disposalSection" class="service-card" id="cardNavDisposal">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
+            </div>
+            <h3 class="service-card-title">올바른 폐기</h3>
+            <p class="service-card-desc">환경오염 방지를 위해 폐의약품을 안전하게 수거·배출하는 방법을 알아봅니다.</p>
+            <span class="card-btn-link">폐기 수칙 보기 &rarr;</span>
+          </a>
+
+          <!-- 카드 5 -->
+          <a href="#adverseSection" class="service-card" id="cardNavAdverse">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </div>
+            <h3 class="service-card-title">이상반응 확인</h3>
+            <p class="service-card-desc">복용 후 나타날 수 있는 이상 증상의 행동 단계별 대응 수칙을 안내합니다.</p>
+            <span class="card-btn-link">이상반응 가이드 &rarr;</span>
+          </a>
+
+          <!-- 카드 6 -->
+          <a href="#interactionSection" class="service-card" id="cardNavInteraction">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5zm-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-2zm-3-4h8v2H8z"/></svg>
+            </div>
+            <h3 class="service-card-title">상호작용 확인</h3>
+            <p class="service-card-desc">다른 약, 음주, 건강기능식품 병용 시 주의해야 할 상호작용 점검 항목입니다.</p>
+            <span class="card-btn-link">체크리스트 확인 &rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 3. 중요 안내 영역 (경고 박스) -->
+      <section class="important-notice-box" aria-labelledby="importantNoticeTitle">
+        <div class="notice-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+        </div>
+        <div class="notice-content-text">
+          <h2 class="sr-only" id="importantNoticeTitle">중요 안전 이용 안내</h2>
+          <p>
+            <strong>이 포털의 정보는 일반적인 의약품 안전사용을 돕기 위한 참고자료입니다.</strong> 개인의 증상, 질환, 임신·수유 여부, 연령 및 함께 복용하는 약에 따라 주의사항이 달라질 수 있습니다.
+          </p>
+          <p>
+            복용을 임의로 시작·중단하거나 용량을 변경하지 말고, 필요한 경우 의사 또는 약사와 상담하세요.
+          </p>
+          <p style="margin-top: 0.5rem;">
+            <span class="emergency-alert-tag">응급 안내</span>
+            <strong>호흡곤란, 의식 저하 등 응급 증상이 의심될 경우 포털 검색보다 즉시 119에 신고하거나 가까운 응급실을 방문하셔야 합니다.</strong>
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. 의약품 검색 결과 섹션 -->
+      <section class="search-results-section" id="searchSection" aria-labelledby="resultsHeading">
+        <div class="results-header-bar">
+          <h2 class="results-count" id="resultsHeading">
+            검색 결과 <span id="totalResultsCount">0</span>건
+          </h2>
+          <div id="activeFilterBadge" style="font-size:0.9rem; color:var(--text-sub);">
+            <!-- 필터 상태 표시 -->
+          </div>
+        </div>
+
+        <!-- 스크린리더를 위한 aria-live 영역 -->
+        <div id="searchAnnounce" class="sr-only" aria-live="polite"></div>
+
+        <!-- 검색 결과 목록 (JS 동적 생성) -->
+        <div class="results-grid" id="resultsGrid">
+          <!-- 의약품 카드가 여기에 삽입됩니다 -->
+        </div>
+
+        <!-- 클라이언트 페이지네이션 -->
+        <div class="pagination-wrap" id="paginationWrap" aria-label="검색 결과 페이지 이동">
+          <!-- 페이지 버튼이 여기에 삽입됩니다 -->
+        </div>
+      </section>
+
+      <!-- 5. 올바른 복용 안내 페이지/섹션 -->
+      <section class="guide-section" id="usageSection" aria-labelledby="usageHeading">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="usageHeading">올바른 복용 방법 수칙</h2>
+          <p class="section-subtitle">의약품의 효과를 최대화하고 부작용을 예방하는 7가지 기본 원칙</p>
+        </div>
+
+        <div class="guide-cards-grid">
+          <div class="guide-step-card">
+            <span class="step-num">원칙 1</span>
+            <h3 class="guide-card-title">제품명 및 대상 확인</h3>
+            <p class="guide-card-text">복용하기 전 본인에게 처방되거나 구매한 의약품이 맞는지 제품명과 이름을 반드시 재확인하세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <span class="step-num">원칙 2</span>
+            <h3 class="guide-card-title">용법·용량 준수</h3>
+            <p class="guide-card-text">정해진 시간에 정해진 양만큼만 복용하며, 임의로 용량을 늘리거나 줄이지 마세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <span class="step-num">원칙 3</span>
+            <h3 class="guide-card-title">타인의 약 복용 금지</h3>
+            <p class="guide-card-text">증상이 유사하더라도 다른 사람의 처방약이나 남아있는 의약품을 절대 복용하지 마세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <span class="step-num">원칙 4</span>
+            <h3 class="guide-card-title">임의 분쇄·임의 가공 금지</h3>
+            <p class="guide-card-text">서방정, 장용정 등 특수 제형 알약은 쪼개거나 씹거나 가루로 만들면 위험할 수 있습니다. (의사·약사 확인 필요)</p>
+          </div>
+
+          <div class="guide-step-card">
+            <span class="step-num">원칙 5</span>
+            <h3 class="guide-card-title">복용을 잊었을 때 대응</h3>
+            <p class="guide-card-text">생각난 즉시 복용하되, 다음 복용 시간이 가까우면 이월하고 한 번에 2배의 용량을 복용하지 마세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <span class="step-num">원칙 6</span>
+            <h3 class="guide-card-title">임의 중단 금지</h3>
+            <p class="guide-card-text">증상이 완화되어도 항생제, 혈압약 등 일부 약은 지정 기간 동안 완복하셔야 합니다.</p>
+          </div>
+
+          <div class="guide-step-card" style="grid-column: 1 / -1;">
+            <span class="step-num">원칙 7</span>
+            <h3 class="guide-card-title">복용 약물 전문가 고지</h3>
+            <p class="guide-card-text">여러 약물이나 건강기능식품을 함께 복용 중인 경우 처방전 발급이나 일반약 구매 시 의사·약사에게 꼭 알리세요. <em style="color:var(--primary-color); font-style:normal; font-weight:bold;">* 의약품 종류 및 제형에 따라 세부사항은 다를 수 있음</em></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 안전한 보관 안내 페이지/섹션 -->
+      <section class="guide-section" id="storageSection" aria-labelledby="storageHeading">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="storageHeading">안전한 보관 방법</h2>
+          <p class="section-subtitle">약의 변질을 막고 사고를 예방하는 약품 보관 수칙</p>
+        </div>
+
+        <div class="guide-cards-grid">
+          <div class="guide-step-card">
+            <h3 class="guide-card-title">어린이 손이 닿지 않는 곳</h3>
+            <p class="guide-card-text">어린이의 오투약 및 중독 사고를 예방하기 위해 높이가 높은 장식장이나 잠금장치가 있는 장소에 보관하세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <h3 class="guide-card-title">직사광선 및 습기 차단</h3>
+            <p class="guide-card-text">빛과 습기는 약물의 화학 변질을 유발합니다. 서늘하고 건조하며 빛이 들어오지 않는 곳에 두세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <h3 class="guide-card-title">표시된 보관 조건 준수</h3>
+            <p class="guide-card-text"><strong>'냉장 보관이 항상 더 안전하다'는 오해입니다.</strong> 반드시 제품 포장에 기재된 실온/차광/냉장 조건을 확인하고 따르세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <h3 class="guide-card-title">원래 용기에 보관</h3>
+            <p class="guide-card-text">다른 용기에 옮겨 담으면 약이 오염되거나 오복용할 위험이 높아집니다. 원래의 PTP 포장이나 용기를 유지하세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <h3 class="guide-card-title">온습도 변화가 큰 장소 피하기</h3>
+            <p class="guide-card-text">욕실, 주방 가스레인지 주변, 여름철 자동차 내부 등 온습도가 급격히 변하는 장소에는 보관하지 마세요.</p>
+          </div>
+
+          <div class="guide-step-card">
+            <h3 class="guide-card-title">유효기간 및 개봉일 확인</h3>
+            <p class="guide-card-text">유효기간이 지난 약은 폐기하고, 개봉 후 시간이 오래 지난 조제약이나 시럽제, 안약 등은 정해진 사용 기한 내에 사용하세요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. 올바른 폐기 안내 페이지/섹션 -->
+      <section class="guide-section" id="disposalSection" aria-labelledby="disposalHeading">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="disposalHeading">올바른 폐기 방법</h2>
+          <p class="section-subtitle">환경오염 및 약물 오남용 방지를 위한 폐의약품 안전 배출 안내</p>
+        </div>
+
+        <div style="background-color: var(--bg-card); border:1px solid var(--border-color); border-radius: var(--radius-md); padding:1.5rem; margin-bottom:1.5rem;">
+          <h3 style="font-size:1.15rem; color:var(--primary-color); margin-bottom:0.75rem;">폐의약품 배출 5대 수칙</h3>
+          <ul class="detail-bullet-list">
+            <li><strong>남은 약 타인 전달 금지:</strong> 사용하고 남은 약을 가족이나 이웃에게 절대로 주지 마세요.</li>
+            <li><strong>변기 및 하수구 무단 배출 금지:</strong> 의약품 성분이 수질 환경과 생태계를 오염시킬 수 있습니다.</li>
+            <li><strong>지방자치단체 폐의약품 수거 체계 활용:</strong> 보건소, 약국, 주민센터 등에 설치된 전용 수거함에 배출하세요.</li>
+            <li><strong>포장재 분리 배출:</strong> 알약 PTP 포장, 종이 상자 등은 일반/재활용 쓰레기로 분리하고 약 성분만 모아서 배출하세요.</li>
+            <li><strong>날카로운 의료폐기물 주의:</strong> 주사침, 혈당 측정용 란셋 등은 별도의 폐기용기에 담아 안내에 따라 안전 배출하세요.</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #F1F5F9; border-left:4px solid var(--secondary-color); padding:1rem 1.25rem; border-radius:var(--radius-sm); font-size:0.95rem;">
+          <strong>[지역별 폐의약품 수거 방식 안내]</strong><br>
+          폐의약품 수거 장소와 배출 방법은 지역에 따라 다를 수 있습니다. 거주 지역의 지방자치단체, 보건소 또는 약국 안내를 확인하세요.
+        </div>
+      </section>
+
+      <!-- 8. 이상반응 및 상호작용 안내 페이지/섹션 -->
+      <section class="guide-section" id="adverseSection" aria-labelledby="adverseHeading">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="adverseHeading">이상반응 대응 및 상호작용 점검</h2>
+          <p class="section-subtitle">증상 수준별 행동 요령과 함께 복용하는 약물 점검</p>
+        </div>
+
+        <!-- 이상반응 3단계 구분 -->
+        <h3 style="font-size:1.2rem; margin-bottom:1rem;" id="adverseLevelTitle">이상반응 발생 시 3단계 행동 수칙</h3>
+        <div class="adverse-level-grid" aria-labelledby="adverseLevelTitle">
+          
+          <div class="adverse-card level-watch">
+            <div class="adverse-card-header">
+              <span style="background:#0284C7; color:#fff; border-radius:50%; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.85rem;">1</span>
+              <h4 class="adverse-card-title">경과 관찰 또는 상담</h4>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-sub); line-height:1.5;">
+              가벼운 속쓰림, 약간의 졸음 등 시급성이 낮은 증상이 나타날 경우 증상을 관찰하고, 지속되거나 불편이 가중되면 의사·약사와 상담합니다.
+            </p>
+          </div>
+
+          <div class="adverse-card level-consult">
+            <div class="adverse-card-header">
+              <span style="background:#D97706; color:#fff; border-radius:50%; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.85rem;">2</span>
+              <h4 class="adverse-card-title">신속한 의료상담</h4>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-sub); line-height:1.5;">
+              피부 발진, 구토, 눈·피부 황달 증상 등 새로운 심한 증상이 발생하거나 빠르게 악화될 경우 신속히 병원이나 약국을 방문하여 상담을 받습니다.
+            </p>
+          </div>
+
+          <div class="adverse-card level-emergency">
+            <div class="adverse-card-header">
+              <span style="background:#DC2626; color:#fff; border-radius:50%; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.85rem;">3</span>
+              <h4 class="adverse-card-title">즉시 응급대응 (119)</h4>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-sub); line-height:1.5;">
+              호흡곤란, 얼굴·입술·혀의 급격한 부종, 의식 저하, 검은색 토혈 등 응급 상황이 의심되면 <strong>즉시 119에 신고하거나 응급실을 찾으십시오.</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- 상호작용 체크리스트 -->
+        <div id="interactionSection" style="margin-top: 3rem; scroll-margin-top: 70px;">
+          <div class="checklist-box">
+            <h3 style="font-size:1.2rem; color:var(--primary-color); margin-bottom:0.5rem; text-align:center;">
+              의약품 상호작용 점검 체크리스트
+            </h3>
+            <p style="font-size:0.9rem; color:var(--text-sub); text-align:center; margin-bottom:1.25rem;">
+              현재 본인에게 해당하는 항목에 체크해 보세요. (자동 진단이 아닌 단순 참고용입니다)
+            </p>
+
+            <form id="interactionCheckForm">
+              <div class="checklist-group">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="처방약">
+                  현재 병원에서 처방받아 복용 중인 약이 있음
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="일반약">
+                  약국에서 직접 구매한 일반의약품(감기약, 진통제 등)이 있음
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="건기식">
+                  비타민, 유산균, 오메가3 등 건강기능식품을 섭취 중임
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="한약">
+                  한약, 탕약 또는 생약제제를 섭취 중임
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="음주">
+                  정기적 또는 최근 음주(술 섭취) 경험이 있음
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="임신수유">
+                  현재 임신 중이거나 수유 중임
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="기저질환">
+                  간·신장 질환, 고혈압, 당뇨 등 기저질환이 있음
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="chk" value="자몽주스">
+                  자몽주스 등 특정 음료/음식을 자주는 섭취함
+                </label>
+              </div>
+            </form>
+
+            <div class="checklist-result-banner" id="checklistResultBanner">
+              선택한 항목에 따라 함께 복용하는 의약품이나 건강기능식품이 있다면 제품명과 성분명을 정리하여 의사 또는 약사에게 확인하세요.
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 9. 포털 이용 안내 섹션 -->
+      <section class="guide-section" id="portalGuideSection" aria-labelledby="portalGuideHeading">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="portalGuideHeading">포털 이용 안내</h2>
+          <p class="section-subtitle">국민 의약품 안심 안내 포털의 서비스 제공 원칙</p>
+        </div>
+
+        <div style="background-color:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem; line-height:1.7; font-size:0.95rem;">
+          <h3 style="font-size:1.1rem; color:var(--primary-color); margin-bottom:0.5rem;">서비스 목적 및 범위</h3>
+          <p style="margin-bottom:1rem;">
+            본 포털은 대한민국 국민이 의약품의 기본정보, 올바른 복용·보관·폐기 방법과 부작용 및 상호작용 정보를 쉽고 안전하게 찾아볼 수 있도록 돕는 공공 안내 포털입니다.
+          </p>
+
+          <h3 style="font-size:1.1rem; color:var(--primary-color); margin-bottom:0.5rem;">개인정보 및 안전성</h3>
+          <p style="margin-bottom:1rem;">
+            본 포털은 사용자의 어떠한 개인정보, 검색어, 복용 내역도 외부 서버로 전송하지 않습니다. 모든 데이터 처리는 사용자의 브라우저 내부에서만 수행되며, 최근 검색어는 본인의 기기(LocalStorage)에만 안전하게 저장됩니다.
+          </p>
+
+          <h3 style="font-size:1.1rem; color:var(--primary-color); margin-bottom:0.5rem;">책임의 한계</h3>
+          <p>
+            본 화면에 표시된 정보는 공공기관이 공시한 기본자료를 참고하여 작성되었습니다. 의학적 진단이나 조언을 대체할 수 없으므로 실제 약물 처방 및 증상 치료는 반드시 전문 의료진 또는 약사와 상담하십시오.
+          </p>
+        </div>
+      </section>
+
+    </div><!-- /.container -->
+  </main>
+
+  <!-- 10. 의약품 상세정보 모달 (Modal Dialog) -->
+  <div class="modal-backdrop" id="medicineModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle" tabIndex="-1">
+    <div class="modal-window">
+      <header class="modal-header">
+        <h2 class="modal-title" id="modalProductTitle">의약품 상세정보</h2>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="상세정보 창 닫기">&times;</button>
+      </header>
+
+      <div class="modal-body" id="modalBodyContent">
+        <!-- 동적으로 상세 내용이 삽입됩니다 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 맨 위로 스크롤 버튼 -->
+  <button type="button" class="btn-back-to-top" id="backToTopBtn" aria-label="페이지 맨 위로 이동">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- 하단 푸터 및 출처 표시 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-info-text">
+          <h3>약, 알고 사용하기 - 국민 의약품 안심 안내 포털</h3>
+          <p>공공 의약품 안전 정보 안내 서비스 | 일반 국민 대상 공공 가이드</p>
+        </div>
+        <div>
+          <p><strong>공공자료 출처:</strong> 식품의약품안전처, 의약품안전나라, 한국의약품안전관리원, 건강보험심사평가원</p>
+          <p><strong>자료 기준일:</strong> 2026년 07월 01일</p>
+        </div>
+      </div>
+
+      <div class="footer-source-notice">
+        본 화면은 웹사이트에 저장된 기준일 현재의 공공자료를 바탕으로 표시됩니다. 최신 허가사항 및 변경사항은 관계 기관의 공식 서비스를 다시 확인하세요.
+        <br>
+        <em>* 본 사이트에 포함된 의약품 개별 정보는 데이터 구조 확인을 위한 [개발용 예시 데이터]가 일부 수록되어 있습니다.</em>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size:0.8rem; color:#64748B;">
+        Copyright &copy; 2026 국민 의약품 안심 안내 포털. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- 로컬 데이터 및 앱 스크립트 (CORS 없이 file:// 동작) -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
